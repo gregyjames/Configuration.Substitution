@@ -4,18 +4,13 @@ using Microsoft.Extensions.Primitives;
 
 namespace Configuration.Substitution;
 
-public class SubstitutionConfigurationProvider: ConfigurationProvider
+public class SubstitutionConfigurationProvider(IConfigurationRoot configuration) : ConfigurationProvider
 {
-    private readonly IConfigurationRoot _configuration;
     private static readonly Regex PlaceholderRegex = new(@"\$\{([^\}]+)\}", RegexOptions.Compiled);
-    public SubstitutionConfigurationProvider(IConfigurationRoot configuration)
-    {
-        _configuration = configuration;
-    }
 
     public override void Load()
     {
-        foreach (var kvp in _configuration.AsEnumerable())
+        foreach (var kvp in configuration.AsEnumerable())
         {
             if (kvp.Value is not null)
             {
@@ -30,7 +25,7 @@ public class SubstitutionConfigurationProvider: ConfigurationProvider
         return PlaceholderRegex.Replace(placeholder, match =>
         {
             var key = match.Groups[1].Value;
-            return _configuration[key] ?? match.Value;
+            return configuration[key] ?? match.Value;
         });
     }
 }
