@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Substitution", "Configuration.Substitution\Configuration.Substitution.csproj", "{BD3908C2-FBA9-4F07-B45D-9FC31EA58E2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Substitution.Tester", "Configuration.Substitution.Tester\Configuration.Substitution.Tester.csproj", "{6FDFC38D-E480-416E-800E-E120D7730E66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{BD3908C2-FBA9-4F07-B45D-9FC31EA58E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD3908C2-FBA9-4F07-B45D-9FC31EA58E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD3908C2-FBA9-4F07-B45D-9FC31EA58E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FDFC38D-E480-416E-800E-E120D7730E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FDFC38D-E480-416E-800E-E120D7730E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FDFC38D-E480-416E-800E-E120D7730E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FDFC38D-E480-416E-800E-E120D7730E66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

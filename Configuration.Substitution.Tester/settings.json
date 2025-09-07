@@ -1,0 +1,3 @@
+{
+  "Endpoint": "https://www.awesomeSauce.${env}.azure.com"
+}
