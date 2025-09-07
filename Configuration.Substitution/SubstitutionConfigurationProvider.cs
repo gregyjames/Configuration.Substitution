@@ -4,20 +4,36 @@ using Microsoft.Extensions.Primitives;
 
 namespace Configuration.Substitution;
 
-public class SubstitutionConfigurationProvider(IConfigurationRoot configuration) : ConfigurationProvider
+public class SubstitutionConfigurationProvider : ConfigurationProvider, IDisposable
 {
+    private readonly IConfigurationRoot _configuration;
+    private IDisposable? _changeSubscription;
+
+    public SubstitutionConfigurationProvider(IConfigurationRoot configuration)
+    {
+        _configuration = configuration;
+        _changeSubscription = ChangeToken.OnChange(configuration.GetReloadToken, OnConfigurationReload);
+    }
+
+    private void OnConfigurationReload()
+    {
+        Load();
+        OnReload();
+    }
+
     private static readonly Regex PlaceholderRegex = new(@"\$\{([^\}]+)\}", RegexOptions.Compiled);
 
     public override void Load()
     {
-        foreach (var kvp in configuration.AsEnumerable())
+        var dict = new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
+        
+        foreach (var kvp in _configuration.AsEnumerable())
         {
-            if (kvp.Value is not null)
-            {
-                var resolved = SubstitutePlaceholder(kvp.Value);
-                Data[kvp.Key] = resolved;
-            }
+            if (kvp.Value is null) continue;
+            dict[kvp.Key] = SubstitutePlaceholder(kvp.Value);
         }
+        
+        Data = dict;
     }
 
     private string SubstitutePlaceholder(string placeholder)
@@ -25,7 +41,13 @@ public class SubstitutionConfigurationProvider(IConfigurationRoot configuration)
         return PlaceholderRegex.Replace(placeholder, match =>
         {
             var key = match.Groups[1].Value;
-            return configuration[key] ?? match.Value;
+            return _configuration[key] ?? match.Value;
         });
+    }
+
+    public void Dispose()
+    {
+        _changeSubscription?.Dispose();
+        _changeSubscription = null;
     }
 }
