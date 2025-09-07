@@ -6,6 +6,8 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Greg James</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIcon>2191554_config_configuration_gear_optioan_setting_icon.png</PackageIcon>
         <RepositoryUrl>https://github.com/gregyjames/Configuration.Substitution</RepositoryUrl>
         <RepositoryType>github</RepositoryType>
@@ -20,6 +22,15 @@
 
     <ItemGroup>
       <None Update="2191554_config_configuration_gear_optioan_setting_icon.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="../LICENSE.md" Pack="true" PackagePath="\">
+            <Link>LICENSE</Link>
+        </Content>
+        <Content Include="../README.md" Pack="true" PackagePath="\">
+            <Link>README.md</Link>
+        </Content>
     </ItemGroup>
 
 </Project>
