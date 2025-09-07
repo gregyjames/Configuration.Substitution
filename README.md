@@ -1,3 +1,6 @@
+[![.NET](https://github.com/gregyjames/Configuration.Substitution/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gregyjames/Configuration.Substitution/actions/workflows/dotnet.yml)
+![NuGet Version](https://img.shields.io/nuget/v/Configuration.Substitution?style=flat&logo=nuget)
+
 # Configuration.Substitution
 Automatically substitute placeholders in your configuration from added sources.
 
