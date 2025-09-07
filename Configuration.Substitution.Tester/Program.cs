@@ -11,11 +11,11 @@ class Program
         await Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration(builder =>
             {
+                builder.AddJsonFile("settings.json");
                 builder.AddInMemoryCollection(new[]
                 {
                     new KeyValuePair<string, string?>("env", "prod")
                 });
-                builder.AddJsonFile("settings.json");
                 builder.EnableSubstitution();
             })
             .ConfigureServices((context, collection) =>
